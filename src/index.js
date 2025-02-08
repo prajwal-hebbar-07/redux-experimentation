@@ -1,18 +1,18 @@
-// Pure Functions are those function which will always give the same output for the same input. The reducer functions in Redux should always be pure functions.
+// Objects and Arrays are always mutable it doesn't matter if it is declared using let or const. To predict the changes in the application we need to maintain immutability.
 
-// Example for a pure function.
-function add2(a) {
-    return a + 2
-}
+// Example of what I said above about Objects and arrays.
 
-// Example for impure functions.
-function addRandom(a) {
-    return a + Math.random()
-}
+const person = {
+  name: "Prajwal",
+  age: 25,
+};
 
-const x = 12
+// Even though it is declared using const we cannot change the value of the person, but we can change the property values inside the object.
+person.name = "Hebbar";
 
-// The following is also not a pure function since if the value that is globally declared changes then the output will also change for the same input. In pure functions all the variables should be passed as parameters.
-function addX(a) {
-    return a + x
-}
+// Similar thing applies to arrays. Since the elements are not stored but the reference to the array/object is stored. Example for array mutability.
+
+const numbers = [1, 2, 3, 4, 5];
+
+// A new number can still be pushed even though the array is declared using const.
+numbers.push(6);
