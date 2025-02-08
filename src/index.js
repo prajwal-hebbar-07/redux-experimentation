@@ -1,4 +1,15 @@
-let numbers = [1, 2, 3, 4, 5]
+const userName = "  Bhattu  "
 
-// This is a higher order function. Which means a function that will take a function as a parameter (or) a function that returns a function (or) a function that does both of these things.
-numbers.map((number) => console.log(number))
+// This is the function to trim all the whitespaces.
+const trim = (name) => name.trim()
+
+// This is the function convert the name to uppercase.
+const upperCaseName = (name) => name.toUpperCase()
+
+// This is a function to generate a greetings message.
+const generateMessage = (name) => `Hello ${name}! Good Afternoon!`
+
+// This is where we call the functions to get the desired result. Since we are calling multiple functions at the same time in a nested manner this is called as function composition. This has a issue, as the number of functions grow the number of the paranthesis and the complexity of the expression also grows. This affects the maintainability and readability of the code.
+const result = generateMessage(upperCaseName(trim(userName)))
+
+console.log(result)
