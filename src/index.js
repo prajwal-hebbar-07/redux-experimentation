@@ -1,18 +1,38 @@
-// Objects and Arrays are always mutable it doesn't matter if it is declared using let or const. To predict the changes in the application we need to maintain immutability.
-
-// Example of what I said above about Objects and arrays.
+// How to update Immutable Objects.
 
 const person = {
   name: "Prajwal",
   age: 25,
 };
 
-// Even though it is declared using const we cannot change the value of the person, but we can change the property values inside the object.
-person.name = "Hebbar";
+// First method is to use Object.assign function to do this update.
+const newPerson = Object.assign({}, person, { name: "Hebbar" });
 
-// Similar thing applies to arrays. Since the elements are not stored but the reference to the array/object is stored. Example for array mutability.
+console.log("Person: ", person);
+console.log("New Person: ", newPerson);
 
-const numbers = [1, 2, 3, 4, 5];
+const employee = {
+  name: "Prajwal",
+  age: 25,
+  place: {
+    country: "India",
+    state: "Karnataka",
+  },
+};
 
-// A new number can still be pushed even though the array is declared using const.
-numbers.push(6);
+// Second method is to use spread operator to update the object.
+const newEmployee = {
+  ...employee,
+  name: "Hebbar",
+  // To avoid updating the original object we need to use spread operator here as well.
+  place: {
+    ...employee.place,
+    state: "Delhi",
+  },
+};
+
+// If we try to update the newEmployee Object directly without spread operator it will also change the employee object since the reference for the employee object is stored.
+// newEmployee.place.state = "Delhi";
+
+console.log("Employee: ", employee);
+console.log("New Employee: ", newEmployee);
