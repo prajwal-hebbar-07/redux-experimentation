@@ -1,15 +1,4 @@
-function greetings() {
-  // Here we are returning a function for this function.
-  return function() {
-    console.log("Good Afternoon!")
-  };
-}
+let numbers = [1, 2, 3, 4, 5]
 
-// Since we are are returning a function in the greetings function we need to make a function call to assign that function to the tempVariable.
-const tempVariable = greetings()
-
-// This will call the returned function from the greetings function.
-console.log("Temp Variable Function Call:", tempVariable())
-
-// This will just print out the function in the console.
-console.log("Greetings Function: ", greetings())
+// This is a higher order function. Which means a function that will take a function as a parameter (or) a function that returns a function (or) a function that does both of these things.
+numbers.map((number) => console.log(number))
