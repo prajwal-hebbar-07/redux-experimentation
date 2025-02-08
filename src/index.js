@@ -1,3 +1,5 @@
+import {compose, pipe} from "lodash/fp"
+
 const userName = "  Bhattu  "
 
 // This is the function to trim all the whitespaces.
@@ -10,6 +12,15 @@ const upperCaseName = (name) => name.toUpperCase()
 const generateMessage = (name) => `Hello ${name}! Good Afternoon!`
 
 // This is where we call the functions to get the desired result. Since we are calling multiple functions at the same time in a nested manner this is called as function composition. This has a issue, as the number of functions grow the number of the paranthesis and the complexity of the expression also grows. This affects the maintainability and readability of the code.
-const result = generateMessage(upperCaseName(trim(userName)))
+const prevResult = generateMessage(upperCaseName(trim(userName)))
 
-console.log(result)
+// Using loadash we can make this complex expression into a simple one. For starters I will use compose function from loadash to solve the issue. but for this function I still need to give the function in the same order as before i.e., in the reverse order of execution.
+const composeFunction = compose(generateMessage, upperCaseName, trim)
+
+const composeFunctionResult = composeFunction(userName)
+
+// But the above method can get confusing since the order is reversed. To overcome this issue we will use the pipe function from loadash where we give the actual order of the functions on how it should be executed.
+const pipeFunction = pipe(trim, upperCaseName, generateMessage)
+
+const pipeFunctionResult = pipeFunction(userName)
+console.log(pipeFunctionResult)
