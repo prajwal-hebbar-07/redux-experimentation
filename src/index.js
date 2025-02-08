@@ -2,9 +2,10 @@ function greetings() {
   return "Good Afternoon!";
 }
 
-// Pass the reference to the function to the message variable and hence the message will also become a function.
-const message = greetings;
+// As you can see here we are passing another function as argument which call be called inside this function.
+function printMessage(anotherFunction) {
+  console.log("Another Function as Argument: ", anotherFunction())
+}
 
-// As you can see in these console logs although we are calling 2 different functions both return the same value since the message has a reference to the function greetings.
-console.log("Message Function: ", message());
-console.log("Greetings Function: ", greetings());
+// Here for the printMessage function we are passing greetings function as argument.
+printMessage(greetings)
