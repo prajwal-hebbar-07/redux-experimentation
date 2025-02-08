@@ -1,11 +1,15 @@
 function greetings() {
-  return "Good Afternoon!";
+  // Here we are returning a function for this function.
+  return function() {
+    console.log("Good Afternoon!")
+  };
 }
 
-// As you can see here we are passing another function as argument which call be called inside this function.
-function printMessage(anotherFunction) {
-  console.log("Another Function as Argument: ", anotherFunction())
-}
+// Since we are are returning a function in the greetings function we need to make a function call to assign that function to the tempVariable.
+const tempVariable = greetings()
 
-// Here for the printMessage function we are passing greetings function as argument.
-printMessage(greetings)
+// This will call the returned function from the greetings function.
+console.log("Temp Variable Function Call:", tempVariable())
+
+// This will just print out the function in the console.
+console.log("Greetings Function: ", greetings())
