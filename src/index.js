@@ -1,25 +1,28 @@
-// Immutable Arrays
+// Immutability exercise
 
-const numbers = [10, 20, 30, 40, 50];
+import { produce } from "immer";
 
-// Adding items to the array can be done using the spread operator. If we want to add an element in the begging then start with the value and then use spread operator. Do the vice versa if you want to add the value in the end.
-const newNumbers = [50, ...numbers];
+// Change the price and rating using immutable object
+const book = {
+  author: "Robert Kiyosaki",
+  book: {
+    name: "Rich Dad Poor Dad",
+    price: "$7",
+    rating: 4.7,
+  },
+};
 
-console.log("Numbers: ", numbers);
-console.log("New Numbers: ", newNumbers);
+const updatedBook = produce(book, (prevBook) => {
+  (prevBook.book.price = "$10"), (prevBook.book.rating = 4.8);
+});
 
-// Adding a value in the middle of the array when we know after which element we need to add the value. For this we need to use slice and not splice.
-const index = numbers.indexOf(30);
-const midNumbers = [...numbers.slice(0, index), 80, ...numbers.slice(index)];
+console.log("Book: ", book);
+console.log("Updated Book: ", updatedBook);
 
-console.log("Mid Numbers: ", midNumbers);
+// Change Book2 to Book4 using immutable arrays
+const books = ["Book1", "Book2", "Book3"];
 
-// Updating an item in the array. For this we use the array map method.
-const updatedNumbers = numbers.map((number) => (number === 30 ? 80 : number));
+const updatedBooks = books.map((book) => (book === "Book2" ? "Book4" : book));
 
-console.log("Updated Numbers: ", updatedNumbers);
-
-// Removing an item from the array. For this we will use the array filter method.
-const removedNumbers = numbers.filter((number) => number !== 40);
-
-console.log("Removed Numbers: ", removedNumbers);
+console.log("Books: ", books);
+console.log("Updated Books: ", updatedBooks);
