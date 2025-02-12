@@ -17,3 +17,12 @@ export const removeTask = (id) => {
     },
   };
 };
+
+export const completeTask = (id) => {
+  return {
+    type: actionTypes.COMPLETE_TASK,
+    payload: {
+      id: id,
+    },
+  };
+};
