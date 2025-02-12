@@ -6,3 +6,12 @@ export const addTask = (task) => {
     },
   };
 };
+
+export const removeTask = (id) => {
+  return {
+    type: "REMOVE_TASK",
+    payload: {
+      id: id,
+    },
+  };
+};
