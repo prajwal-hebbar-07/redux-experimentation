@@ -1,22 +1,21 @@
-import store from "./store";
-import {
-  addTask,
-  completeTask,
-  fetchTodo,
-  removeTask,
-} from "./store/configureStore";
+import store from "./store/configureStore";
+import { addEmployee } from "./store/employees";
+import { addTask, completedTask, removeTask } from "./store/tasks";
 
-const unsubscribe = store.subscribe(() => {
-  console.log("Updated State", store.getState());
+store.subscribe(() => {
+  console.log(store.getState());
 });
 
-store.dispatch(addTask("Task 1"));
-store.dispatch(addTask("Task 2"));
+store.dispatch(addTask({ task: "Task 1" }));
 
-store.dispatch(completeTask(2));
+store.dispatch(addTask({ task: "Task 2" }));
 
-unsubscribe();
+store.dispatch(completedTask({ id: 1 }));
 
-store.dispatch(removeTask(1));
-store.dispatch(fetchTodo());
-console.log("Normal Console Log: ", store.getState());
+store.dispatch(addTask({ task: "Task 3" }));
+
+store.dispatch(removeTask({ id: 2 }));
+
+store.dispatch(addEmployee({ name: "Prajwal" }));
+
+store.dispatch(addEmployee({ name: "Ankit" }));
