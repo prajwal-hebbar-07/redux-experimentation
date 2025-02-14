@@ -1,28 +1,22 @@
-// Immutability exercise
+import store from "./store";
+import {
+  addTask,
+  completeTask,
+  fetchTodo,
+  removeTask,
+} from "./store/configureStore";
 
-import { produce } from "immer";
-
-// Change the price and rating using immutable object
-const book = {
-  author: "Robert Kiyosaki",
-  book: {
-    name: "Rich Dad Poor Dad",
-    price: "$7",
-    rating: 4.7,
-  },
-};
-
-const updatedBook = produce(book, (prevBook) => {
-  (prevBook.book.price = "$10"), (prevBook.book.rating = 4.8);
+const unsubscribe = store.subscribe(() => {
+  console.log("Updated State", store.getState());
 });
 
-console.log("Book: ", book);
-console.log("Updated Book: ", updatedBook);
+store.dispatch(addTask("Task 1"));
+store.dispatch(addTask("Task 2"));
 
-// Change Book2 to Book4 using immutable arrays
-const books = ["Book1", "Book2", "Book3"];
+store.dispatch(completeTask(2));
 
-const updatedBooks = books.map((book) => (book === "Book2" ? "Book4" : book));
+unsubscribe();
 
-console.log("Books: ", books);
-console.log("Updated Books: ", updatedBooks);
+store.dispatch(removeTask(1));
+store.dispatch(fetchTodo());
+console.log("Normal Console Log: ", store.getState());
